@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Shop MTS</title>
+{% endblock title %}
+
+{% block body %}
+
+
+    {% load static %}
+
+<section>
+    <div class="container m-3">
+        <div class="row">
+        {% for i in products %}
+        <div class="col">
+        <div class="card" style="width: 18rem; margin-bottom:15px">
+            <img src="{{i.image}}" class="card-img-top" alt="{{i.id}}" height="320" weight="100">
+            <div class="card-body">
+                <p><h5 class="card-title">{{i.name}}</h5></p>
+                <p><h5 class="text-danger">Цена: {{i.price}}</h5></p>
+                <p><h5 class="text-danger text-opacity-75" style="color:#dc3545">Цена в рассрочку (12 месяцев): {{i.installment}}</h5></p>
+                <h6 class="card-subtitle mb-2 text-muted">{{i.availability}}</h6>
+                <p class="card-text">{{i.characteristics}}</p>
+                <a href="#" class="card-link">вставить ссылку Оформить рассрочку</a>
+                <a href="#" class="card-link">Авторизоваться</a>
+            </div>
+        </div>
+        </div>
+        {% endfor%}
+        </div>
+    </div>
+</section>
+    <br><a href="admin/">Вход админа</a><br/>
+
+{% endblock body %}
