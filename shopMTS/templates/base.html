@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Title</title>
+    {% endblock title %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Playfair Display', serif;">
+
+<nav class="navbar" style="background-color: rgba(255,255,255,0.5); position:sticky; top:0;z-index:100;">
+  <div class="container-sm">
+      <a class="navbar-brand" href="/">
+      <img src="{% static "/mts.png" %}" alt="mts" width="130" height="60"></a>
+
+    <a class="navbar-brand" href="/">Интернет-магазин</a>
+
+    <form class="d-flex" action="{% url 'search_results' %}" role="search" method="get">
+      <input class="form-control me-2" type="search" placeholder="Поиск товара..." aria-label="Search" name="q">
+      <button class="btn btn-outline-danger" type="submit">Искать</button>
+    </form>
+      {% if user.is_authenticated %}
+        <p class="m-3"><a href="{% url 'logout' %}" class="btn btn-danger">Выход</a></p>
+      {% else %}
+      <div class="btn-group">
+      <p class="m-3"><a href="{% url 'register' %}" class="btn btn-danger">Регистрация</a></p>
+      <p class="m-3"><a href="{% url 'login' %}" class="btn btn-danger">Вход</a></p>
+      </div>
+      {% endif %}
+
+
+  </div>
+</nav>
+{% if messages %}
+        	{% for message in messages %}
+          	<div class="alert alert-{{ message.tags }}">
+            	{{ message }}
+          	</div>
+        	{% endfor %}
+{% endif %}
+    {% block body %}
+    <p>BODY</p>
+    {% endblock body %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

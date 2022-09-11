@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Detail</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container m-lg">
+    <div class="card" style="width: 18rem;">
+      <img src="{{product.image.url}}" class="card-img-top" alt="{{i.id}}" height="320" weight="100">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+          <h6 class="card-title">{{product.price}}</h6>
+          <h6 class="card-title">{{product.installment}}</h6>
+          {% if not checknum %}
+        <form method="post">{% csrf_token %}
+          <div class="check-policy">
+            <label>Личный номер паспорта</label><input type="text"name="persnumber">
+            <label>Номер телефона</label><input type="text"name="telnumber">
+
+          <br><input type="checkbox" id="policy" name="Согласие на обработку данных" value="Согласен" onchange="document.getElementById('submit').disabled = !this.checked;">
+          <font  for="policy" size="2" >Согласие на обработку персональных данных</font>
+          </div>
+
+          <button id="submit" class="btn" disabled>Отправить</button>
+        </form>
+
+        {% if check != 'all' %}
+        <p class="h4" style="color:red">Некорректный ввод</p>
+        {% endif %}
+        {% else %}
+
+
+        <p class="text-decoration-underline fw-bold">{{answer}}</p>
+        {% endif %}
+
+
+
+
+      </div>
+</div>
+  {{persnumber}}
+{% endblock body %}

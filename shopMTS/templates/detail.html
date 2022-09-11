@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Detail</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container-sm">
+    <div class="card shadow-lg" style="width: 18rem;">
+      <img src="{{product.image}}" class="card-img-top" alt="{{i.id}}" height="320" weight="100">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+          <h6 class="card-title">{{product.price}}</h6>
+          <h6 class="card-title">{{product.installment}}</h6>
+        <p class="card-text">{{product.characteristics}}</p>
+
+          {% if user.is_authenticated%}
+            <p> <a href="{% url 'installment' product.id %}" class="btn btn-danger" >Оформить в рассрочку</a></p>
+          {% else %}
+        <i> Пожалуйста авторизуйтесь для продолжения</i>
+            <p> <a href="{% url 'register' %}" class="btn btn-danger">Оформить в рассрочку</a></p>
+          {% endif %}
+      </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section>
+    <div class="container m-3">
+        <div class="row">
+        {% for i in product %}
+        <div class="col">
+        <div class="card" style="width: 18rem; margin-bottom:15px">
+            <img src="{{i.image.url}}" class="card-img-top" alt="{{i.id}}" height="320" weight="100">
+            <div class="card-body">
+                <p><h5 class="card-title">{{i.name}}</h5></p>
+                <p><h5 class="text-danger">Цена: {{i.price}}</h5></p>
+                <p><h5 class="text-danger text-opacity-75" style="color:#dc3545">Цена в рассрочку (12 месяцев): {{i.installment}}</h5></p>
+                <h6 class="card-subtitle mb-2 text-muted">{{i.availability}}</h6>
+                <a href="{% url 'detail' i.id %}" class="card-link">Подробнее о товаре...</a>
+            </div>
+        </div>
+        </div>
+        {% endfor%}
+        </div>
+    </div>
+</section>
+{% endblock body %}
