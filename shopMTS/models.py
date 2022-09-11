@@ -1,19 +1,5 @@
 from django.db import models
 
-class User(models.Model):
-    """
-    model of users of I-NET Shop MTS
-    """
-
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    number = models.CharField(max_length=13)
-    password = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = 'Пользователи'
-
 class Product(models.Model):
     """
     model of product I-NET Shop MTS

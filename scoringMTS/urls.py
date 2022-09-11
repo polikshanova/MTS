@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.http import HttpResponse
 
+
 def view_xxx(request):
     return HttpResponse('404 not found :)')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shopMTS.urls')),
-    re_path(r'.+', view_xxx),
+    # re_path(r'.+', view_xxx),
+    path('user/', include('users.urls')),
     ]
 
 
